@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+  <meta charset="UTF-8">
+  <title>Əhmədin Canlı Yayımı</title>
+  <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+  <style>
+    body {
+      background-color: #111;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 40px;
+    }
+    h1 {
+      margin-bottom: 20px;
+      font-size: 32px;
+    }
+    video {
+      width: 90%;
+      max-width: 800px;
+      height: auto;
+      border-radius: 16px;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+    }
+  </style>
+</head>
+<body>
+  <h1>📺 Əhmədin Canlı Yayımı</h1>
+  <video id="video" controls autoplay muted></video>
+  <p style="margin-top: 15px;">Əgər görüntü gəlmirsə, səhifəni yenilə.</p>
+
+  <script>
+    var video = document.getElementById('video');
+    if (Hls.isSupported()) {
+      var hls = new Hls();
+      hls.loadSource('https://a8.radyotelekom.com.tr:3011/stream/play.m3u8');
+      hls.attachMedia(video);
+    } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+      video.src = 'https://a8.radyotelekom.com.tr:3011/stream/play.m3u8';
+    }
+  </script>
+</body>
+</html>
